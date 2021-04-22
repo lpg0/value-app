@@ -10,6 +10,7 @@ import clsx from 'clsx';
 
 import axios from 'axios';
 import { authMiddleWare } from '../util/auth';
+import apiUrl from '../util/apiUrl';
 
 const styles = (theme) => ({
 	content: {
@@ -82,7 +83,7 @@ class account extends Component {
 		const authToken = localStorage.getItem('AuthToken');
 		axios.defaults.headers.common = { Authorization: `${authToken}` };
 		axios
-			.get('/user')
+			.get(apiUrl('/user'))
 			.then((response) => {
 				console.log(response.data);
 				this.setState({
@@ -128,7 +129,7 @@ class account extends Component {
 		form_data.append('content', this.state.content);
 		axios.defaults.headers.common = { Authorization: `${authToken}` };
 		axios
-			.post('/user/image', form_data, {
+			.post(apiUrl('/user/image'), form_data, {
 				headers: {
 					'content-type': 'multipart/form-data'
 				}
@@ -160,7 +161,7 @@ class account extends Component {
 			country: this.state.country
 		};
 		axios
-			.post('/api/user', formRequest)
+			.post(apiUrl('/user'), formRequest)
 			.then(() => {
 				this.setState({ buttonLoading: false });
 			})

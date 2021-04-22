@@ -23,6 +23,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 import { authMiddleWare } from '../util/auth';
+import apiUrl from '../util/apiUrl';
 
 const drawerWidth = 240;
 
@@ -77,7 +78,7 @@ class home extends Component {
 
 	logoutHandler = (event) => {
 		localStorage.removeItem('AuthToken');
-		this.props.history.push('/landing');
+		this.props.history.push('/');
 	};
 
 	constructor(props) {
@@ -97,7 +98,7 @@ class home extends Component {
 		const authToken = localStorage.getItem('AuthToken');
 		axios.defaults.headers.common = { Authorization: `${authToken}` };
 		axios
-			.get('/api/user')
+			.get(apiUrl('/user'))
 			.then((response) => {
 				console.log(`user data: ${response.data}`);
 				this.setState({
@@ -113,7 +114,7 @@ class home extends Component {
 			})
 			.catch((error) => {
 				if (error?.response?.status === 403) {
-					this.props.history.push('/login');
+					this.props.history.push('/landing');
 				}
 				console.log(error);
 				this.setState({ errorMsg: 'Error in retrieving the data' });

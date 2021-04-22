@@ -23,6 +23,7 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { authMiddleWare } from '../util/auth';
+import apiUrl from '../util/apiUrl';
 
 
 
@@ -124,7 +125,7 @@ class value extends Component {
 		const authToken = localStorage.getItem('AuthToken');
 		axios.defaults.headers.common = { Authorization: `${authToken}` };
 		axios
-			.get('/values')
+			.get(apiUrl('/values'))
 			.then((response) => {
 				this.setState({
 					values: response.data,
@@ -142,7 +143,7 @@ class value extends Component {
 		axios.defaults.headers.common = { Authorization: `${authToken}` };
 		let valueId = data.value.valueId;
 		axios
-			.delete(`value/${valueId}`)
+			.delete(apiUrl(`/value/${valueId}`))
 			.then(() => {
 				window.location.reload();
 			})
@@ -214,13 +215,13 @@ class value extends Component {
 			let options = {};
 			if (this.state.buttonType === 'Edit') {
 				options = {
-					url: `/api/value/${this.state.valueId}`,
+					url: apiUrl(`/value/${this.state.valueId}`),
 					method: 'put',
 					data: userValue
 				};
 			} else {
 				options = {
-					url: '/api/value',
+					url: apiUrl('/value'),
 					method: 'post',
 					data: userValue
 				};
