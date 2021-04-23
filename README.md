@@ -14,4 +14,8 @@ Deployed on [Firebase](https://firebase.google.com/) at [valueapp-7ab69.web.app]
 
 [FreeCodeCamp Tutorials](https://www.freecodecamp.org/news/how-to-build-a-todo-application-using-reactjs-and-firebase/)
 
+[Adobe Illustrator User Guide](https://helpx.adobe.com/illustrator/user-guide.html)
+
+[Material UI](https://material-ui.com/)
+
 [Axios for node.js](https://www.npmjs.com/package/axios)
